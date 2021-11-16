@@ -68,6 +68,7 @@ void Server::HandleClients() {
             Socket sock(copy.fd_array[i]);
             if (sock.GetSocketHandle() == main_socket.GetSocketHandle()) {
                 Socket client;
+                std::this_thread::sleep_for(std::chrono::milliseconds(700));
                 Result res = main_socket.Accept(client);
                 if (res == Result::Error) {
                     *log << LOG::LOG_ERROR << "Failed to connect client #" + client.getLogin();

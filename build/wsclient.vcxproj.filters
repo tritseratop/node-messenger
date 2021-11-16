@@ -4,8 +4,14 @@
     <Filter Include="..">
       <UniqueIdentifier>{739DB09A-CC57-A953-A6CF-F64FA08E4FA7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="..\TCPClient">
-      <UniqueIdentifier>{561DAB8A-EF7E-0F55-B519-87EFBB95F671}</UniqueIdentifier>
+    <Filter Include="..\client">
+      <UniqueIdentifier>{D5E3C9B9-F4E5-9856-CE8C-F9B03683EBB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{739DB09A-CC57-A953-A6CF-F64FA08E4FA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\client">
+      <UniqueIdentifier>{D5E3C9B9-F4E5-9856-CE8C-F9B03683EBB9}</UniqueIdentifier>
     </Filter>
     <Filter Include="C:">
       <UniqueIdentifier>{7B735499-E5DD-1C2B-6C26-70023832A1CF}</UniqueIdentifier>
@@ -39,8 +45,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\TCPClient\TCPClient.cpp">
-      <Filter>..\TCPClient</Filter>
+    <ClCompile Include="..\client\WSClient.cpp">
+      <Filter>..\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\client\WSListener.cpp">
+      <Filter>..\client</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\user\AppData\Roaming\npm\node_modules\node-gyp\src\win_delay_load_hook.cc">
       <Filter>C:\Users\user\AppData\Roaming\npm\node_modules\node-gyp\src</Filter>

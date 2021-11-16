@@ -1,11 +1,11 @@
-4	[2021-11-16T14:59:36] [INF] :	Client #0 is connected
-5	[2021-11-16T14:59:44] [INF] :	Client #1 is connected
-6	[2021-11-16T14:59:47] [MSG] :	Client [ 1	] : dfgdfg
-7	[2021-11-16T14:59:49] [MSG] :	Client [ 0	] : dgdfgg
-8	[2021-11-16T14:59:51] [MSG] :	Client [ 1	] : sdfsf
-9	[2021-11-16T14:59:53] [MSG] :	Client [ 0	] : dgdfgggg
-10	[2021-11-16T14:59:56] [MSG] :	Client [ 1	] : 111
-11	[2021-11-16T15:00:05] [MSG] :	Client [ 1	] : 222
-12	[2021-11-16T15:00:07] [MSG] :	Client [ 0	] : 555
-13	[2021-11-16T15:00:10] [INF] :	Client # is disconnected
-14	[2021-11-16T15:00:10] [INF] :	Client # is disconnected
+16	[2021-11-16T17:54:40] [MSG] :	Client [ 2	] : dfgdfg
+17	[2021-11-16T17:54:43] [INF] :	Client # is disconnected
+18	[2021-11-16T17:54:43] [INF] :	Client #4 is connected
+19	[2021-11-16T17:54:43] [INF] :	Client #4 is added to chat
+20	[2021-11-16T17:54:46] [MSG] :	Client [ 4	] : erter
+21	[2021-11-16T17:54:48] [MSG] :	Client [ 3	] : etert
+22	[2021-11-16T17:54:49] [MSG] :	Client [ 2	] : tretr
+23	[2021-11-16T17:54:50] [INF] :	Client #2 is disconnected
+24	[2021-11-16T17:54:52] [MSG] :	Client [ 3	] : etert
+25	[2021-11-16T17:54:53] [INF] :	Client # is disconnected
+26	[2021-11-16T17:54:55] [INF] :	Client #3 is disconnected

@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B7C3E19C-16AB-95FD-4BB9-1FF9C34B91F7}</ProjectGuid>
+    <ProjectGuid>{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>client</RootNamespace>
+    <RootNamespace>wsclient</RootNamespace>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\TCPClient;..\MessengerLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\client;..\MessengerLib;C:\Program Files (x86)\oatpp\include\oatpp-1.2.5\oatpp;C:\Program Files (x86)\oatpp-websocket\include\oatpp-1.2.5\oatpp-websocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -59,7 +59,7 @@
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=client;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wsclient;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -71,7 +71,7 @@
       <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;"C:\\node-master\\$(Configuration)\\node.lib";.\MessengerLib.lib;wsock32.lib;ws2_32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;"C:\\node-master\\$(Configuration)\\node.lib";.\MessengerLib.lib;C:\Program Files (x86)\oatpp-websocket\lib\oatpp-1.2.5\oatpp-websocket.lib;C:\Program Files (x86)\oatpp\lib\oatpp-1.2.5\oatpp-test.lib;C:\Program Files (x86)\oatpp\lib\oatpp-1.2.5\oatpp.lib;wsock32.lib;ws2_32.lib</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -83,13 +83,13 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\TCPClient;..\MessengerLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=client;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\client;..\MessengerLib;C:\Program Files (x86)\oatpp\include\oatpp-1.2.5\oatpp;C:\Program Files (x86)\oatpp-websocket\include\oatpp-1.2.5\oatpp-websocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wsclient;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\TCPClient;..\MessengerLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\client;..\MessengerLib;C:\Program Files (x86)\oatpp\include\oatpp-1.2.5\oatpp;C:\Program Files (x86)\oatpp-websocket\include\oatpp-1.2.5\oatpp-websocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
       <DisableSpecificWarnings>4351;4355;4800;4251;4275;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -102,7 +102,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=client;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wsclient;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
@@ -115,7 +115,7 @@
       <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;"C:\\node-master\\$(Configuration)\\node.lib";.\MessengerLib.lib;wsock32.lib;ws2_32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;"C:\\node-master\\$(Configuration)\\node.lib";.\MessengerLib.lib;C:\Program Files (x86)\oatpp-websocket\lib\oatpp-1.2.5\oatpp-websocket.lib;C:\Program Files (x86)\oatpp\lib\oatpp-1.2.5\oatpp-test.lib;C:\Program Files (x86)\oatpp\lib\oatpp-1.2.5\oatpp.lib;wsock32.lib;ws2_32.lib</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -127,16 +127,19 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\TCPClient;..\MessengerLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=client;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\node-master\include\node;C:\node-master\src;C:\node-master\deps\openssl\config;C:\node-master\deps\openssl\openssl\include;C:\node-master\deps\uv\include;C:\node-master\deps\zlib;C:\node-master\deps\v8\include;D:\Develop\nodejs\vs2019\messenger_oatpp\node_modules\node-addon-api;..\client;..\MessengerLib;C:\Program Files (x86)\oatpp\include\oatpp-1.2.5\oatpp;C:\Program Files (x86)\oatpp-websocket\include\oatpp-1.2.5\oatpp-websocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wsclient;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY="node.exe";%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\binding.gyp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\TCPClient\TCPClient.cpp">
-      <ObjectFileName>$(IntDir)\TCPClient\TCPClient.obj</ObjectFileName>
+    <ClCompile Include="..\client\WSClient.cpp">
+      <ObjectFileName>$(IntDir)\client\WSClient.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\client\WSListener.cpp">
+      <ObjectFileName>$(IntDir)\client\WSListener.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="C:\Users\user\AppData\Roaming\npm\node_modules\node-gyp\src\win_delay_load_hook.cc" />
   </ItemGroup>

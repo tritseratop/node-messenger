@@ -12,6 +12,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server.vcxproj", 
 		{7C94B332-864B-1F87-C71C-2BD5D9C232B5} = {7C94B332-864B-1F87-C71C-2BD5D9C232B5}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wsclient", "wsclient.vcxproj", "{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C94B332-864B-1F87-C71C-2BD5D9C232B5} = {7C94B332-864B-1F87-C71C-2BD5D9C232B5}
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(node_modules)", "..\node_modules", "{9D350B9E-06FB-960D-859F-B43C9597383A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(node-addon-api)", "..\node_modules\node-addon-api", "{AF891C37-E709-9CCC-0D50-0CCCC8CCC563}"
@@ -22,6 +27,10 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}.Debug|x64.ActiveCfg = Debug|x64
+		{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}.Debug|x64.Build.0 = Debug|x64
+		{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}.Release|x64.ActiveCfg = Release|x64
+		{6CB5A420-58D2-EEFB-1EAD-90823ABCE30E}.Release|x64.Build.0 = Release|x64
 		{7C94B332-864B-1F87-C71C-2BD5D9C232B5}.Debug|x64.ActiveCfg = Debug|x64
 		{7C94B332-864B-1F87-C71C-2BD5D9C232B5}.Debug|x64.Build.0 = Debug|x64
 		{7C94B332-864B-1F87-C71C-2BD5D9C232B5}.Release|x64.ActiveCfg = Release|x64

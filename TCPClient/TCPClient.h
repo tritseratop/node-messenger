@@ -7,7 +7,7 @@
 #include <string>
 #include <napi.h>
 
-class Client : public IClient, public Napi::ObjectWrap<Client> {
+class Client : public Napi::ObjectWrap<Client> {
 public:
 	Client(const Napi::CallbackInfo& info) 
 		: Napi::ObjectWrap<Client>(info)

@@ -7,9 +7,10 @@
 
 class AppComponent {
 private:
-	const Configure config;
+	Configure config;
 public:
 	AppComponent(const Configure& config_) : config(config_) {}
+	AppComponent() : config(Configure())  {}
 
 	OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor)([] {
 		return std::make_shared<oatpp::async::Executor>(1, 1, 1);

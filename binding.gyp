@@ -36,14 +36,33 @@
         "cflags!": [ "-fno-exceptions" ],
         "cflags_cc!": [ "-fno-exceptions" ],
         "sources": [
-            "./RunClient/main.cpp",
             "./TCPClient/TCPClient.cpp",
+        ],
+        'include_dirs': [
+            "<!@(node -p \"require('node-addon-api').include\")",
+            "./TCPClient",
+            "./MessengerLib",
+        ],
+        'libraries': [
+            "./MessengerLib.lib",
+            "wsock32.lib",
+            "ws2_32.lib",
+        ],
+        'dependencies': [
+            "<!(node -p \"require('node-addon-api').gyp\")"
+        ],
+        'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ]
+    },
+     {
+        "target_name": "wsclient",
+        "cflags!": [ "-fno-exceptions" ],
+        "cflags_cc!": [ "-fno-exceptions" ],
+        "sources": [
             "./client/WSClient.cpp",
             "./client/WSListener.cpp",
         ],
         'include_dirs': [
             "<!@(node -p \"require('node-addon-api').include\")",
-            "./TCPClient",
             "./client",
             "./MessengerLib",
             "C:/Program Files (x86)/oatpp/include/oatpp-1.2.5/oatpp",

@@ -15,7 +15,7 @@ Napi::Value Client::Initialize(const Napi::CallbackInfo& info) {
 		std::cerr << "Could not find a usable version of the winsock API dll." << std::endl;
 		return Napi::Boolean::New(info.Env(), false);
 	}
-	std::cout << "Winsock API successfully initialized!" << std::endl;
+	//std::cout << "Winsock API successfully initialized!" << std::endl;
 	return Napi::Boolean::New(info.Env(), true);
 }
 
@@ -102,6 +102,7 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 				// Transform native data into JS data, passing it to the provided
 				// `jsCallback` -- the TSFN's JavaScript function.
 				jsCallback.Call({ Napi::String::New(env, *message) });
+				delete message;
 			};
 			while (true) {
 				std::string* message = new std::string();
@@ -134,6 +135,7 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 		}
 	}
 	native_thread.join();*/
+	native_thread.detach();
 	return Napi::Boolean::New(info.Env(), false);
 }
 

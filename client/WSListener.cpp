@@ -44,14 +44,25 @@ oatpp::async::CoroutineStarter WSListener::onClose(const std::shared_ptr<AsyncWe
 
 oatpp::async::CoroutineStarter WSListener::readMessage(const std::shared_ptr<AsyncWebSocket>& socket, v_uint8 opcode, p_char8 data, oatpp::v_io_size size) {
     if (size == 0) { // message transfer finished
-
+        auto callback = [](Napi::Env env, Napi::Function jsCallback, std::string* message) {
+            // Transform native data into JS data, passing it to the provided
+            // `jsCallback` -- the TSFN's JavaScript function.
+            jsCallback.Call({ Napi::String::New(env, *message) });
+            delete message;
+        };
         auto wholeMessage = m_messageBuffer.toString();
         m_messageBuffer.clear();
         if (wholeMessage->std_str()[0] == '\\') {
             handleCommand(wholeMessage->std_str());
         }
         else {
-            std::cout << wholeMessage->c_str() << std::endl;
+            std::string* message = new std::string();
+            *message = wholeMessage->std_str(); //mb use memcpy
+            //std::cout << wholeMessage->c_str() << std::endl;
+            napi_status status = client->tsfn.BlockingCall(message, callback);
+            if (status != napi_ok) {
+                std::cout << "Napi::ThreadSafeNapi::Function.BlockingCall() failed" << std::endl;
+            }
         }
     }
     else if (size > 0) { // message frame received

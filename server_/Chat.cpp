@@ -82,6 +82,7 @@ void Chat::sendMessageToAllAsync(const oatpp::String& message) {
 std::atomic<v_int32> Chat::SOCKETS(0); 
 
 void Chat::onAfterCreate_NonBlocking(const std::shared_ptr<ClientListener::AsyncWebSocket>& socket, const std::shared_ptr<const ParameterMap>& params) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(700));
 	int id;
 	if (clientContainer->addSocket(type, id)) {
 		auto client = std::make_shared<ClientListener>(socket, this, id);

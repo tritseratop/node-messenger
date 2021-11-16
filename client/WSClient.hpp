@@ -2,15 +2,32 @@
 #define WSClient_hpp
 
 #include "WSListener.hpp"
+#include "AppComponent.hpp"
 
-class WSClient {
+#include <napi.h>
+
+class WSClient : public Napi::ObjectWrap<WSClient> {
 private:
-	std::string login;
 	const Configure config;
+	AppComponent* component_;
+	std::string login;
 public:
-	WSClient(const Configure& config_) : config(config_) {}
-	void run();
-	void runWithoutCoroutine();
+	Napi::ThreadSafeFunction tsfn;
+	WSClient(const Napi::CallbackInfo& info)
+		: Napi::ObjectWrap<WSClient>(info)
+		, config(Configure())
+		, component_(nullptr)
+	{
+		oatpp::base::Environment::init();
+	}
+	~WSClient() {
+		oatpp::base::Environment::destroy();
+	}
+	static Napi::Object Init(Napi::Env, Napi::Object exports);
+	static Napi::Value CreateNewItem(const Napi::CallbackInfo& info);
+
+	Napi::Value run(const Napi::CallbackInfo& info);
+	Napi::Value Send(const Napi::CallbackInfo& info);
 	void setLogin(std::string login_);
 };
 
