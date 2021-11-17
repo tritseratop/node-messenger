@@ -1,6 +1,8 @@
 ﻿#ifndef FILELOGGER_HPP
 #define FILELOGGER_HPP
 
+#include "../ServerCommutator.h"
+
 #include <fstream>
 #include <deque>
 #include <string>
@@ -31,32 +33,53 @@ namespace logger {
         std::string PrepTime();
 
         // Overload << operator using log type
+        friend FileLogger& operator << (FileLogger& logger, const ServerType l_type) {
+            switch (l_type) {
+            case ServerType::TCP: {
+                std::lock_guard<std::mutex> guard(logger.m_writeFile);
+                logger.myFile << "[TCP] ";
+            }
+                break;
+            case ServerType::Websocket: {
+                std::lock_guard<std::mutex> guard(logger.m_writeFile);
+                logger.myFile << "[WS ] ";
+            }
+                break;
+            default:
+            {
+                logger.writeTime("[NO]  ");
+            }
+                break;
+            }
+            return logger;
+        }
+
         friend FileLogger& operator << (FileLogger& logger, const e_logType l_type) {
             ++logger.lines;
             switch (l_type) {
             case logger::FileLogger::e_logType::LOG_ERROR:
             { 
-                logger.writeTime("[ERR] :\t");
+                logger.writeTime("[ERR] : ");
                 ++logger.numErrors;
             }
                 break;
 
             case logger::FileLogger::e_logType::LOG_WARNING:
             {
-                logger.writeTime("[WAR] :\t");
+                logger.writeTime("[WAR] : ");
                 ++logger.numWarnings;
             }
                 break;
 
             case logger::FileLogger::e_logType::LOG_MESSAGE:
             {
-                logger.writeTime("[MSG] :\t");
+                logger.writeTime("[MSG] : ");
             }
                 break;
 
             default:
             {
-                logger.writeTime("[INF] :\t");
+                logger.writeTime("[INF] : ");
             }
                 break;
             } // sw

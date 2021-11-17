@@ -14,7 +14,7 @@ void Chat::addClient(const std::shared_ptr<ClientListener>& client) {
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String(msg.c_str()));
 		}
-		*log << LOG::LOG_INFO << "Client #" + std::to_string(client->getClientId()) + " is connected";
+		*log << LOG::LOG_INFO << type << "Client #" + std::to_string(client->getClientId()) + " is connected";
 		{
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String("Welcome to the Awesome Chat Server!"));
@@ -43,7 +43,7 @@ void Chat::setClientContainer(ClientContainer* clients) {
 }
 
 void Chat::removeClientById(v_int64 id) {
-	*log << LOG::LOG_INFO << "Client #" + std::to_string(id) + " is disconnected";
+	*log << LOG::LOG_INFO << type << "Client #" + std::to_string(id) + " is disconnected";
 	if (idToClient.count(id) != 0) {
 		idToClient.erase(id);
 	}
@@ -69,7 +69,7 @@ void Chat::sendMessageToAllAsync(v_int64 source_id, const oatpp::String& message
 			pair.second->sendMessageAsync(message);
 		}
 	}
-	*log << LOG::LOG_MESSAGE << message.get()->std_str();
+	*log << LOG::LOG_MESSAGE << type << message.get()->std_str();
 }
 
 void Chat::sendMessageToAllAsync(const oatpp::String& message) {
@@ -97,11 +97,10 @@ void Chat::onAfterCreate_NonBlocking(const std::shared_ptr<ClientListener::Async
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String("The maximum number of messenger clients was reached. Please wait..."));
 		}
-		*log << LOG::LOG_INFO << "WS client #NULL is added to waiting";
+		*log << LOG::LOG_INFO << type << "WS client #NULL is added to waiting";
 	}
 }
 void Chat::onBeforeDestroy_NonBlocking(const std::shared_ptr<ClientListener::AsyncWebSocket>& socket) {
-	//SOCKETS--;
 	auto client = std::static_pointer_cast<ClientListener>(socket->getListener());
 	removeClientById(client->getClientId());
 	client->invalidateSocket();

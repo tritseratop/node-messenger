@@ -2,9 +2,6 @@
 #include "WSClient.hpp"
 #include <iostream>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// WSListener
-
 void WSListener::handleCommand(std::string msg) {
     std::string command, login;
     ParseMessage(msg, command, login);
@@ -28,7 +25,6 @@ std::string WSListener::getLogin() {
 
 oatpp::async::CoroutineStarter WSListener::onPing(const std::shared_ptr<AsyncWebSocket>& socket, const oatpp::String& message) {
     OATPP_LOGD(TAG, "onPing");
-    //std::lock_guard<std::mutex> lock(m_writeMutex);
     return socket->sendPongAsync(message);
 }
 
@@ -58,10 +54,10 @@ oatpp::async::CoroutineStarter WSListener::readMessage(const std::shared_ptr<Asy
         else {
             std::string* message = new std::string();
             *message = wholeMessage->std_str(); //mb use memcpy
-            //std::cout << wholeMessage->c_str() << std::endl;
             napi_status status = client->tsfn.BlockingCall(message, callback);
             if (status != napi_ok) {
                 std::cout << "Napi::ThreadSafeNapi::Function.BlockingCall() failed" << std::endl;
+                delete message;
             }
         }
     }
@@ -79,7 +75,6 @@ oatpp::async::Action ClientCoroutine::act() {
 
 oatpp::async::Action ClientCoroutine::onConnected(const std::shared_ptr<oatpp::data::stream::IOStream>& connection) {
     m_socket = oatpp::websocket::AsyncWebSocket::createShared(connection, true);
-    //m_socket->setListener(std::make_shared<WSListener>());
     m_socket->setListener(std::make_shared<WSListener>(client));
     SOCKET = m_socket;
     return m_socket->listenAsync().next(yieldTo(&ClientCoroutine::onFinishListen));

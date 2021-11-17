@@ -1,5 +1,6 @@
 #include "Logger.h"
 #include <iomanip> 
+#include <sstream> 
 
 using namespace logger;
 
@@ -33,7 +34,9 @@ FileLogger::~FileLogger() {
 }
 
 void FileLogger::writeTime(const std::string& logType) {
-    std::string msg = std::to_string(lines) + "\t" + PrepTime() + logType;
+    std::stringstream ss;
+    ss << std::setw(4) << std::to_string(lines) << " " + PrepTime() << logType;
+    std::string msg = ss.str();
     if (content.size() <= max_lines) {
         std::lock_guard<std::mutex> guard(m_writeFile);
         content.push_back(msg);
@@ -43,7 +46,6 @@ void FileLogger::writeTime(const std::string& logType) {
         std::lock_guard<std::mutex> guard(m_writeFile);
         content.pop_front();
         content.push_back(msg);
-        myFile << msg;
         myFile.close();
         myFile.open(name, std::ofstream::out | std::ofstream::trunc);
         // all but last with \n

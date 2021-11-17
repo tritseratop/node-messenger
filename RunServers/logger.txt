@@ -1,11 +1,11 @@
-23	[2021-11-17T11:32:18] [MSG] :	Client [ 1	] : 11
-24	[2021-11-17T11:32:22] [INF] :	Client #1 is disconnected
-25	[2021-11-17T11:32:22] [INF] :	Client #3 is connected
-26	[2021-11-17T11:32:25] [MSG] :	Client [ 3	] : 11
-27	[2021-11-17T11:32:27] [MSG] :	Client [ 2	] : sdfsdf
-28	[2021-11-17T11:32:28] [MSG] :	Client [ 3	] : sfd
-29	[2021-11-17T11:32:30] [MSG] :	Client [ 2	] : 11
-30	[2021-11-17T11:32:34] [MSG] :	Client [ 3	] : 666
-31	[2021-11-17T11:32:36] [MSG] :	Client [ 2	] : 11
-32	[2021-11-17T11:32:44] [INF] :	Client #3 is disconnected
-33	[2021-11-17T11:32:44] [INF] :	Client # is disconnected
+   1 [2021-11-17T14:50:04] [INF] : Log file created
+   2 [2021-11-17T14:50:04] [INF] : Log file info: Messenger Logger
+   3 [2021-11-17T14:50:04] [INF] : [TCP] Winsock API successfully initialized
+   4 [2021-11-17T14:50:22] [INF] : [WS ] Client #0 is connected
+   5 [2021-11-17T14:50:24] [INF] : [WS ] Client #1 is connected
+   6 [2021-11-17T14:50:26] [MSG] : [WS ] Client [    1] : sdfsdf
+   7 [2021-11-17T14:50:28] [MSG] : [WS ] Client [    0] : sdfsdf
+   8 [2021-11-17T14:50:30] [MSG] : [WS ] Client [    1] : 00
+   9 [2021-11-17T14:50:32] [MSG] : [WS ] Client [    0] : 1111
+  10 [2021-11-17T14:50:33] [INF] : [WS ] Client #1 is disconnected
+  11 [2021-11-17T14:50:35] [INF] : [WS ] Client #0 is disconnected

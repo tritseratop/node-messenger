@@ -1,11 +1,13 @@
 #include "Utility.h"
+#include <sstream> 
+#include <iomanip>
 
 Result ReadTextFile(const std::string& path, std::string& result) {
 	std::ifstream file(path);
 	if (file.is_open()) {
-		std::string buf; // TODO
-		buf.reserve(50);
-		result.reserve(50);
+		std::string buf;
+		buf.reserve(100);
+		result.reserve(100);
 		while (std::getline(file, buf)) {
 			result += buf;
 		}
@@ -69,7 +71,9 @@ Commands GetCommand(std::string command) {
 }
 
 std::string genMessage(const std::string login, const std::string& message) {
-	return "Client [ " + login + "\t] : " + message;
+	std::stringstream ss;
+	ss << "Client [ " << std::setw(2) << login << "] : " + message;
+	return ss.str();
 }
 
 std::string createMessageFromQueue(const std::deque<std::string>& deq) {

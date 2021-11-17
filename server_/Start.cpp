@@ -1,7 +1,6 @@
 #include "WebsockServer.h"
 
 void WebsockServer::run(IServerObserver* server_, ClientContainer* clients) {
-	//run();
 	AppComponent components(config);
 	OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
@@ -38,17 +37,3 @@ void WebsockServer::popWaiting() {
 	OATPP_COMPONENT(std::shared_ptr<Chat>, chat);
 	chat->popWaiting();
 }
-
-
-
-//int main() {
-//	oatpp::base::Environment::init();
-//
-//	//run();
-//	WebsockServer server;
-//	server.run();
-//
-//	oatpp::base::Environment::destroy();
-//
-//	return 0;
-//}

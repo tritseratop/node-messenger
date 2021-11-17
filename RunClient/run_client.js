@@ -1,5 +1,3 @@
-'use strict';
-
 let readline = require('readline');
 let readlineSync = require('readline-sync');
 const { Client } = require('bindings')('client');

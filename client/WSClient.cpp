@@ -33,15 +33,12 @@ Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
         info[0].As<Napi::Function>(),	// JS function from caller
         "TSFN",							// Resource name
         0,								// Max queue size (0 = unlimited).
-        1,								// Initial thread count
-        [](Napi::Env) {   // Finalizer used to clean threads up
-        }
+        1								// Initial thread count
     );
     std::string path = std::string(info[1].As<Napi::String>());
     native_thread = std::thread(
         [this, path]() {
             AppComponent component(SetConfig(path));
-            //component_ = &component;
             OATPP_COMPONENT(std::shared_ptr<oatpp::network::ClientConnectionProvider>, connectionProvider);
             OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);
 
@@ -59,6 +56,7 @@ Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
 Napi::Value WSClient::Send(const Napi::CallbackInfo& info) {
     OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);
     std::string msg = std::string(info[0].As<Napi::String>());
+
     std::string send_msg = genMessage(login, msg);
     std::mutex socketWriteMutex;
     {

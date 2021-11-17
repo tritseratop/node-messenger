@@ -73,7 +73,7 @@ Result Client::setLogin(std::string login_) {
 
 std::thread native_thread;
 Napi::ThreadSafeFunction tsfn;
-// ∆»≈—“‹
+
 Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 	Napi::Env env = info.Env();
 	if (info.Length() < 1) {
@@ -90,9 +90,7 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 		info[0].As<Napi::Function>(),	// JS function from caller
 		"TSFN",							// Resource name
 		0,								// Max queue size (0 = unlimited).
-		1,								// Initial thread count
-		[](Napi::Env) {   // Finalizer used to clean threads up
-		}
+		1								// Initial thread count
 	);
 	native_thread = std::thread(
 		[this]() {
@@ -112,10 +110,10 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 					handleCommand(*message);
 				}
 				else {
-					//std::cout << message << std::endl;
 					napi_status status = tsfn.BlockingCall(message, callback);
 					if (status != napi_ok) {
 						std::cout << "Napi::ThreadSafeNapi::Function.BlockingCall() failed" << std::endl;
+						delete message;
 					}
 				}
 			}
