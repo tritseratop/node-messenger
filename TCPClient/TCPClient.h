@@ -1,5 +1,6 @@
 #pragma once
 #include "IncludeMe.h"
+#include "Utility.h"
 #include "ClientCommutator.h"
 #include <iostream>
 #include <list>
@@ -11,7 +12,7 @@ class Client : public Napi::ObjectWrap<Client> {
 public:
 	Client(const Napi::CallbackInfo& info) 
 		: Napi::ObjectWrap<Client>(info)
-		, config(Configure())
+		, config(SetConfig(std::string(info[0].As<Napi::String>())))
 	{}
 	static Napi::Object Init(Napi::Env, Napi::Object exports);
 	static Napi::Value CreateNewItem(const Napi::CallbackInfo& info);

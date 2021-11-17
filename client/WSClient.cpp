@@ -15,12 +15,16 @@ std::thread native_thread;
 Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
 
     Napi::Env env = info.Env();
-    if (info.Length() < 1) {
-        std::cout << "Expected one argument" << std::endl;
+    if (info.Length() < 2) {
+        std::cout << "Expected two arguments" << std::endl;
         return  Napi::Boolean::New(info.Env(), false);
     }
     else if (!info[0].IsFunction()) {
-        std::cout << "Expected  arg to be function" << std::endl;
+        std::cout << "Expected arg to be function" << std::endl;
+        return  Napi::Boolean::New(info.Env(), false);
+    }
+    else if (!info[1].IsString()) {
+        std::cout << "Expected arg to be string" << std::endl;
         return  Napi::Boolean::New(info.Env(), false);
     }
     Napi::Function output = info[0].As<Napi::Function>();
@@ -31,13 +35,12 @@ Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
         0,								// Max queue size (0 = unlimited).
         1,								// Initial thread count
         [](Napi::Env) {   // Finalizer used to clean threads up
-            native_thread.join();
         }
     );
-
+    std::string path = std::string(info[1].As<Napi::String>());
     native_thread = std::thread(
-        [this]() {
-            AppComponent component(config);
+        [this, path]() {
+            AppComponent component(SetConfig(path));
             //component_ = &component;
             OATPP_COMPONENT(std::shared_ptr<oatpp::network::ClientConnectionProvider>, connectionProvider);
             OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);
@@ -46,22 +49,6 @@ Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
 
             executor->execute<ClientCoroutine>(connector, this);
             std::this_thread::sleep_for(std::chrono::milliseconds(700));
-            /*oatpp::websocket::Config config;
-            config.maskOutgoingMessages = true;
-            config.readBufferSize = 64;
-            ClientCoroutine::SOCKET->setConfig(config);*/
-            //std::mutex socketWriteMutex;
-            //executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, &socketWriteMutex);
-            /*std::thread test_handler([&executor, this, &socketWriteMutex] {
-                while (true) {
-                    std::string msg;
-                    std::cin >> msg;
-                    msg = genMessage(login, msg);
-                    std::lock_guard<std::mutex> lock(socketWriteMutex);
-                    executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, oatpp::String(msg.c_str()));
-                }
-            });
-            test_handler.join();*/
             executor->join();
         }
     );
@@ -74,8 +61,10 @@ Napi::Value WSClient::Send(const Napi::CallbackInfo& info) {
     std::string msg = std::string(info[0].As<Napi::String>());
     std::string send_msg = genMessage(login, msg);
     std::mutex socketWriteMutex;
-    std::lock_guard<std::mutex> lock(socketWriteMutex);
-    executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, oatpp::String(send_msg.c_str()));
+    {
+        std::lock_guard<std::mutex> lock(socketWriteMutex);
+        executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, oatpp::String(send_msg.c_str()));
+    }
     return Napi::Boolean::New(info.Env(), true);
 }
 

@@ -4,8 +4,18 @@
 #include <napi.h>
 
 Napi::Value Run(const Napi::CallbackInfo& info) {
-	//Configure configure(SetConfig("D:/Develop/network cpp_/vs2019/messenger_oatpp/config.json"));
-	Configure configure;
+	Napi::Env env = info.Env();
+	if (info.Length() < 1) {
+		std::cout << "Expected one argument" << std::endl;
+		return  Napi::Boolean::New(info.Env(), false);
+	}
+	else if (!info[0].IsString()) {
+		std::cout << "Expected arg to be String" << std::endl;
+		return  Napi::Boolean::New(info.Env(), false);
+	}
+	std::string path = std::string(info[0].As<Napi::String>());
+	Configure configure(SetConfig(path));
+	//Configure configure;
 	oatpp::base::Environment::init();
 	auto log = logger::FileLogger::getInstance(10, "Messenger Logger", "logger.txt");
 	ClientContainer clients(configure.MAX_CLIENT_COUNT);

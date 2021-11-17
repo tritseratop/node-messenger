@@ -1,5 +1,5 @@
 #include "TCPClient.h"
-#include "Utility.h"
+
 #include <thread>
 #include <future>
 #include <iostream>
@@ -15,7 +15,6 @@ Napi::Value Client::Initialize(const Napi::CallbackInfo& info) {
 		std::cerr << "Could not find a usable version of the winsock API dll." << std::endl;
 		return Napi::Boolean::New(info.Env(), false);
 	}
-	//std::cout << "Winsock API successfully initialized!" << std::endl;
 	return Napi::Boolean::New(info.Env(), true);
 }
 
@@ -93,7 +92,6 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 		0,								// Max queue size (0 = unlimited).
 		1,								// Initial thread count
 		[](Napi::Env) {   // Finalizer used to clean threads up
-			native_thread.join();
 		}
 	);
 	native_thread = std::thread(
@@ -124,17 +122,6 @@ Napi::Value Client::StartChating(const Napi::CallbackInfo& info) {
 			tsfn.Release();
 		}
 	);
-	/*std::string send_msg;
-	while (true) {
-		send_msg = "hello";
-		std::getline(std::cin, send_msg);
-		if (login.empty()) continue;
-		if (main_socket.Send(genMessage(login, send_msg)) == Result::Error) {
-			int error = WSAGetLastError();
-			return Result::Error;
-		}
-	}
-	native_thread.join();*/
 	native_thread.detach();
 	return Napi::Boolean::New(info.Env(), false);
 }

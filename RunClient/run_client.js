@@ -5,20 +5,14 @@ let readlineSync = require('readline-sync');
 const { Client } = require('bindings')('client');
 const { WSClient } = require('bindings')('wsclient');
 
-/*let input = function () {
-    let res = "";
-    res = syncreadline.prompt({ prompt: '>' });
-    return res;
-};*/
-
 console.log("Enter 0 to run TCP-client");
 console.log("Enter 1 to run WS-client");
 
 let command = readlineSync.prompt();
-//let command = 0;
+
 if (command == 0) {
     console.log("You entered 0 to run TCP-client");
-    const client = new Client();
+    const client = new Client("D:/Develop/nodejs/vs2019/messenger_oatpp/build/config.json");
     const output = (msg) => {
         console.log(msg);
     };
@@ -39,7 +33,6 @@ if (command == 0) {
         });
         rl.prompt();
         rl.on('line', (msg) => {
-            //console.log(msg);
             client.Send(msg);
         });
         client.StartChating(output);
@@ -58,9 +51,8 @@ else {
     });
     rl.prompt();
     rl.on('line', (msg) => {
-        //console.log(msg);
         wsclient.Send(msg);
     });
 
-    wsclient.run(output);
+    wsclient.run(output, "D:/Develop/nodejs/vs2019/messenger_oatpp/build/config.json");
 }
