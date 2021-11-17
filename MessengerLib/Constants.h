@@ -10,25 +10,26 @@ const char* const IP = "127.0.0.1";
 
 class Configure {
 public:
-	Configure(int N = 3, int M = 5
+	Configure(int N = 3, int M = 5, int loggerlines = 10
 		, const std::string& tcphost = "127.0.0.1", int tcpport = 1111
 		, const std::string& wshost = "localhost", int wsport = 8080)
 		: MAX_CLIENT_COUNT(N)
 		, MAX_MESSAGE_BUF_COUNT(M)
+		, MAX_LOGGER_LINES(loggerlines)
 		, TCP_HOST(tcphost)
 		, TCP_PORT(tcpport)
 		, WS_HOST(wshost.c_str())
 		, WS_PORT(wsport)
 	{}
 
-	Configure(const Configure& config)
+	/*Configure(const Configure& config)
 		: MAX_CLIENT_COUNT(config.MAX_CLIENT_COUNT)
 		, MAX_MESSAGE_BUF_COUNT(config.MAX_MESSAGE_BUF_COUNT)
 		, TCP_HOST(config.TCP_HOST)
 		, TCP_PORT(config.TCP_PORT)
 		, WS_HOST(config.WS_HOST)
 		, WS_PORT(config.WS_PORT)
-	{}
+	{}*/
 
 	/*Configure& operator= (const Configure& config) {
 		if (this == &config) {
@@ -41,19 +42,6 @@ public:
 		return *this;
 	}*/
 
-	int getMaxClientCount() const {
-		return MAX_CLIENT_COUNT;
-	}
-	int getMaxMessageBufCount() const {
-		return MAX_MESSAGE_BUF_COUNT;
-	}
-	int getPort() const {
-		return PORT;
-	}
-	std::string getIp() const {
-		return IP;
-	}
-
 public:
 	int MAX_CLIENT_COUNT;
 	int MAX_MESSAGE_BUF_COUNT;
@@ -61,6 +49,7 @@ public:
 	int TCP_PORT;
 	std::string WS_HOST;
 	int WS_PORT;
+	int MAX_LOGGER_LINES;
 };
 
 enum Commands {

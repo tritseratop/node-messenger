@@ -27,6 +27,8 @@ Configure ParseJsonToConfig(const std::string& json) {
 	assert(d["n"].IsInt());
 	assert(d.HasMember("m"));
 	assert(d["m"].IsInt());
+	assert(d.HasMember("loggerlines"));
+	assert(d["loggerlines"].IsInt());
 	assert(d.HasMember("tcphost"));
 	assert(d["tcphost"].IsString());
 	assert(d.HasMember("tcpport"));
@@ -37,7 +39,7 @@ Configure ParseJsonToConfig(const std::string& json) {
 	assert(d["wsport"].IsInt());
 	auto s = d["tcphost"].GetString();
 
-	Configure conf(d["n"].GetInt(), d["m"].GetInt()
+	Configure conf(d["n"].GetInt(), d["m"].GetInt(), d["loggerlines"].GetInt()
 		, d["tcphost"].GetString(), d["tcpport"].GetInt()
 		, d["wshost"].GetString(), d["wsport"].GetInt());
 	return conf;
