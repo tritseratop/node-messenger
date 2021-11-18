@@ -54,16 +54,19 @@ Napi::Value WSClient::run(const Napi::CallbackInfo& info) {
 }
 
 Napi::Value WSClient::Send(const Napi::CallbackInfo& info) {
-    OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);
-    std::string msg = std::string(info[0].As<Napi::String>());
+    if (!login.empty()) {
+        OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);
+        std::string msg = std::string(info[0].As<Napi::String>());
 
-    std::string send_msg = genMessage(login, msg);
-    std::mutex socketWriteMutex;
-    {
-        std::lock_guard<std::mutex> lock(socketWriteMutex);
-        executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, oatpp::String(send_msg.c_str()));
+        std::string send_msg = genMessage(login, msg);
+        std::mutex socketWriteMutex;
+        {
+            std::lock_guard<std::mutex> lock(socketWriteMutex);
+            executor->execute<ClientSenderCoroutine>(ClientCoroutine::SOCKET, oatpp::String(send_msg.c_str()));
+        }
+        return Napi::Boolean::New(info.Env(), true);
     }
-    return Napi::Boolean::New(info.Env(), true);
+    return Napi::Boolean::New(info.Env(), false);
 }
 
 void WSClient::setLogin(std::string login_) {

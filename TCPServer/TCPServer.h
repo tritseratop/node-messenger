@@ -14,11 +14,11 @@ class Server : public IServerObserver {
 public:
 	Server(const Configure& config);
 
-	void Initialize();	// bool
-	void Shutdown();	// void
-	void Create();		// number
+	void Initialize();
+	void Shutdown();
+	void Create();	
 	void Close();
-	virtual void SetServer(IServerObserver* webserver_); // TODO вынести в интерфейс
+	virtual void SetServer(IServerObserver* webserver_);
 	virtual void setClientContainer(ClientContainer* clients);
 	virtual void popWaiting();
 
@@ -41,7 +41,6 @@ private:
 	std::list<Socket> client_sockets;
 	std::map<int, Socket> clients;
 	std::map<int, std::string> client_logins;
-	//std::map<int, std::string> name_to_id;
 	std::queue<Socket> waiting_clients;
 	ClientContainer* clientContainer;
 

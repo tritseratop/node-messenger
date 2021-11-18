@@ -8,15 +8,11 @@
 
 class WSClient : public Napi::ObjectWrap<WSClient> {
 private:
-	const Configure config;
-	AppComponent* component_;
 	std::string login;
 public:
 	Napi::ThreadSafeFunction tsfn;
 	WSClient(const Napi::CallbackInfo& info)
 		: Napi::ObjectWrap<WSClient>(info)
-		, config(Configure())
-		, component_(nullptr)
 	{
 		oatpp::base::Environment::init();
 	}

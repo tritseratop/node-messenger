@@ -37,7 +37,7 @@ Result Server::AddClient(Socket& client) { // TODO разобраться с копированием в 
     clients[client.GetSocketHandle()] = client;
 
     client.Send("\\login " + client.getLogin());
-    *log << LOG::LOG_INFO << type << "Client #" + client.getLogin() + " is connected";
+    *log << LOG::LOG_INFO << type << "Client #" + client.getLogin() + " is added to chat";
 
     std::string welcomeMsg = "Welcome to the Awesome Chat Server!"; // TODO receive from js
     client.Send(welcomeMsg);
@@ -80,7 +80,7 @@ void Server::HandleClients() {
                 int id;
                 bool isAdded = clientContainer->addSocket(type, id);
                 client.setLogin(std::to_string(id));
-
+                *log << LOG::LOG_INFO << type << "Client #" + client.getLogin() + " is connected";
                 if (isAdded) {
                     AddClient(client);
                 }
@@ -163,7 +163,6 @@ void Server::popWaiting() {
     if (!waiting_clients.empty()) {
         clientContainer->popWaiting();
         AddClient(waiting_clients.front());
-        *log << LOG::LOG_INFO << type << "Client #" + waiting_clients.front().getLogin() + " is added to chat";
         waiting_clients.pop();
     }
 }

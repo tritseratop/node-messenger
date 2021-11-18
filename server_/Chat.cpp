@@ -14,11 +14,12 @@ void Chat::addClient(const std::shared_ptr<ClientListener>& client) {
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String(msg.c_str()));
 		}
-		*log << LOG::LOG_INFO << type << "Client #" + std::to_string(client->getClientId()) + " is connected";
 		{
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String("Welcome to the Awesome Chat Server!"));
 		}
+
+		*log << LOG::LOG_INFO << type << "Client #" + std::to_string(client->getClientId()) + " is added to chat";
 		idToClient[client->getClientId()] = client;
 		if (!clientContainer->getMessageHistory().empty()) {
 			std::lock_guard<std::mutex> m(m_writeMessage);
@@ -84,20 +85,20 @@ std::atomic<v_int32> Chat::SOCKETS(0);
 void Chat::onAfterCreate_NonBlocking(const std::shared_ptr<ClientListener::AsyncWebSocket>& socket, const std::shared_ptr<const ParameterMap>& params) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(700));
 	int id;
-	if (clientContainer->addSocket(type, id)) {
-		auto client = std::make_shared<ClientListener>(socket, this, id);
-		socket->setListener(client);
+	bool isAdded = clientContainer->addSocket(type, id);
+	*log << LOG::LOG_INFO << type << "Ñlient #" + std::to_string(id) + " is connected";
+	auto client = std::make_shared<ClientListener>(socket, this, id);
+	socket->setListener(client);
+	if (isAdded) {
 		addClient(client);
 	}
 	else {
-		auto client = std::make_shared<ClientListener>(socket, this, id);
-		socket->setListener(client);
 		waitingClient.push(client);
 		{
 			std::lock_guard<std::mutex> m(m_writeMessage);
 			client->sendMessageAsync(oatpp::String("The maximum number of messenger clients was reached. Please wait..."));
 		}
-		*log << LOG::LOG_INFO << type << "WS client #NULL is added to waiting";
+		*log << LOG::LOG_INFO << type << "Ñlient #" + std::to_string(id) + " is added to waiting";
 	}
 }
 void Chat::onBeforeDestroy_NonBlocking(const std::shared_ptr<ClientListener::AsyncWebSocket>& socket) {
