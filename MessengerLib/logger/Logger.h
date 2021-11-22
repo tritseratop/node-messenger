@@ -38,17 +38,16 @@ namespace logger {
             case ServerType::TCP: {
                 std::lock_guard<std::mutex> guard(logger.m_writeFile);
                 logger.myFile << "[TCP] ";
+                logger.content.back() += "[TCP] ";
             }
                 break;
             case ServerType::Websocket: {
                 std::lock_guard<std::mutex> guard(logger.m_writeFile);
                 logger.myFile << "[WS ] ";
+                logger.content.back() += "[WS ] ";
             }
                 break;
             default:
-            {
-                logger.writeTime("[NO]  ");
-            }
                 break;
             }
             return logger;
