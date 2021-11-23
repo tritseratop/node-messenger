@@ -1,7 +1,7 @@
 {
-  "m": 5,
+  "m": 7,
   "n": 2,
-  "loggerlines": 10,
+  "loggerlines": 15,
   "tcphost": "127.0.0.1",
   "tcpport": 1112,
   "wshost": "localhost",

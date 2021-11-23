@@ -17,7 +17,7 @@ Napi::Value Run(const Napi::CallbackInfo& info) {
 	Configure configure(SetConfig(path));
 	oatpp::base::Environment::init();
 	auto log = logger::FileLogger::getInstance(configure.MAX_LOGGER_LINES, "Messenger Logger", "logger.txt");
-	ClientContainer clients(configure.MAX_CLIENT_COUNT);
+	ClientContainer clients(configure.MAX_CLIENT_COUNT, configure.MAX_MESSAGE_BUF_COUNT);
 	Server tcpserver(configure);
 	WebsockServer websockserver(configure);
 	tcpserver.setClientContainer(&clients);

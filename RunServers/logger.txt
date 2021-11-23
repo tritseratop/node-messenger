@@ -1,11 +1,16 @@
-  13 [2021-11-22T11:25:07] [MSG] : [WS ] Client [  1] : 3
-  14 [2021-11-22T11:25:07] [MSG] : [WS ] Client [  1] : 4
-  15 [2021-11-22T11:25:07] [MSG] : [WS ] Client [  1] : 5
-  16 [2021-11-22T11:25:07] [MSG] : [WS ] Client [  1] : 6
-  17 [2021-11-22T11:25:08] [MSG] : [WS ] Client [  1] : 7
-  18 [2021-11-22T11:25:08] [MSG] : [WS ] Client [  1] : 8
-  19 [2021-11-22T11:25:08] [MSG] : [WS ] Client [  1] : 9
-  20 [2021-11-22T11:25:09] [MSG] : [WS ] Client [  1] : 0
-  21 [2021-11-22T11:25:11] [MSG] : [TCP] Client [  0] : sdf
-  22 [2021-11-22T11:25:12] [INF] : [WS ] Client #1 is disconnected
-  23 [2021-11-22T11:25:13] [INF] : [TCP] Client #0 is disconnected
+   7 [2021-11-23T15:27:20] [INF] : [WS ] Client #1 is added to chat
+   8 [2021-11-23T15:27:26] [MSG] : [WS ] Client [  1] : sdf
+   9 [2021-11-23T15:27:27] [MSG] : [TCP] Client [  0] : sdf
+  10 [2021-11-23T15:27:28] [MSG] : [TCP] Client [  0] : sd
+  11 [2021-11-23T15:27:29] [MSG] : [TCP] Client [  0] : 1
+  12 [2021-11-23T15:27:29] [MSG] : [TCP] Client [  0] : 2
+  13 [2021-11-23T15:27:29] [MSG] : [TCP] Client [  0] : 3
+  14 [2021-11-23T15:27:29] [MSG] : [TCP] Client [  0] : 4
+  15 [2021-11-23T15:27:30] [MSG] : [TCP] Client [  0] : 5
+  16 [2021-11-23T15:27:30] [MSG] : [TCP] Client [  0] : 6
+  17 [2021-11-23T15:27:38] [INF] : [TCP] Client #2 is connected
+  18 [2021-11-23T15:27:38] [INF] : [TCP] Client #2 is added to chat
+  19 [2021-11-23T15:27:40] [MSG] : [TCP] Client [  2] : sdf
+  20 [2021-11-23T15:27:42] [MSG] : [TCP] Client [  2] : sdf
+  21 [2021-11-23T15:27:44] [MSG] : [TCP] Client [  0] : sdf
+  22 [2021-11-23T15:27:46] [MSG] : [TCP] Client [  0] : sdf
